@@ -1,0 +1,11 @@
+#redis配置地址
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api-service-route
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
