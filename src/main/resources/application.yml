@@ -18,5 +18,8 @@ management:
 # 端口
 server:
   port: 80
-
-
+logging:
+  level:
+    root: info
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: debug
+    org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: debug
