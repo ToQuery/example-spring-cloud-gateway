@@ -14,11 +14,12 @@
 	<artifactId>example-spring-cloud-gateway-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>example-spring-cloud-gateway</name>
+	<name>example-spring-cloud-gateway-parent</name>
 	<description>Demo project for Spring Boot</description>
 
 	<modules>
 		<module>gateway</module>
+		<module>services</module>
 	</modules>
 
 	<properties>
