@@ -1,9 +1,17 @@
+
+app:
+  resource:
+    uri: http://resource:9000
+#
 spring:
+  profiles:
+    active: dev
+
   autoconfigure:
     # TODO: remove when fixed https://github.com/spring-projects/spring-security/issues/6314
     exclude: org.springframework.boot.actuate.autoconfigure.security.reactive.ReactiveManagementWebSecurityAutoConfiguration
-  thymeleaf:
-    cache: false
+    thymeleaf:
+      cache: false
   security:
     oauth2:
       client:
@@ -17,7 +25,7 @@ spring:
             scope: openid,profile,email,resource.read
         provider:
           uaa:
-            authorization-uri: http://uaa:8090/uaa/oauth/authorize
+            authorization-uri: http://localhost:8090/uaa/oauth/authorize
             token-uri: http://uaa:8090/uaa/oauth/token
             user-info-uri: http://uaa:8090/uaa/userinfo
             user-name-attribute: sub
@@ -33,3 +41,24 @@ spring:
 #          filters:
 #            - TokenRelay=
 #            - RemoveRequestHeader=Cookie
+
+
+# actuator配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  endpoint:
+    health:
+      show-details: always
+
+# 端口
+server:
+  port: 8080
+logging:
+  level:
+    root: info
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: debug
+    org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: debug

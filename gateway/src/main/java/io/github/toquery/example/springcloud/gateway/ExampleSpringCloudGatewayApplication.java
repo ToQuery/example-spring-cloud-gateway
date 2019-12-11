@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.GatewayFilterSpec;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
-import org.springframework.cloud.security.oauth2.gateway.TokenRelayGatewayFilterFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -32,9 +31,6 @@ public class ExampleSpringCloudGatewayApplication {
         SpringApplication.run(ExampleSpringCloudGatewayApplication.class, args);
     }
 
-    @Autowired
-    private TokenRelayGatewayFilterFactory filterFactory;
-
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
@@ -58,11 +54,6 @@ public class ExampleSpringCloudGatewayApplication {
                         .filters(f -> f.rewritePath("/foo/(?<segment>.*)", "/${segment}"))
                         .uri(uri)
                 )
-
-                .route("resource", r -> r.path("/resource")
-                        .filters(f -> f.filters(filterFactory.apply())
-                                .removeRequestHeader("Cookie")) // Prevents cookie being sent downstream
-                        .uri("http://192.168.103.197:9000")) // Taking advantage of docker naming
 
 //                .route("hystrix_route", r -> r.host("*.hystrix.org")
 //                        .filters(f -> f.hystrix(c -> c.setName("slowcmd")))

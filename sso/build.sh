@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Performing a clean Maven build"
-./mvnw clean package -DskipTests=true
+mvn clean package -DskipTests=true
 
 # echo "Building the UAA"
 # cd uaa
@@ -10,10 +10,10 @@ echo "Performing a clean Maven build"
 
 echo "Building the Gateway"
 cd gateway
-docker build --tag toquery/example-spring-cloud-gateway .
+docker build --tag toquery/example-spring-cloud-gateway-sso .
 cd ..
 
-echo "Building the Services"
+echo "Building the Resource"
 cd resource
-docker build --tag toquery/example-spring-cloud-gateway-resource .
+docker build --tag toquery/example-spring-cloud-gateway-resource-sso .
 cd ..

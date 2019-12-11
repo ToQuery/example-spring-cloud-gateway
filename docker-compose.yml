@@ -8,19 +8,15 @@ services:
     ports:
       - "8090:8090"
   resource:
-    image: toquery/example-spring-cloud-gateway-resource:latest
+    image: toquery/example-spring-cloud-gateway-resource-sso:latest
     container_name: resource
     expose:
       - "9000"
-    environment:
-      - --spring.profiles.active=sso
   gateway:
-    image: toquery/example-spring-cloud-gateway:latest
+    image: toquery/example-spring-cloud-gateway-sso:latest
     container_name: gateway
     expose:
       - "8080"
-    environment:
-      - --spring.profiles.active=sso
     ports:
       - "8080:8080"
     depends_on:

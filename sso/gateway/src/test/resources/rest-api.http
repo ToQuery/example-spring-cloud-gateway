@@ -1,0 +1,32 @@
+# 01.test path_route
+
+GET http://localhost/get
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+# 02.test path_rewrite_route
+
+GET http://localhost/rewrite/get
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+
+# 03.test host_route
+
+POST http://localhost/post
+Accept: */*
+Cache-Control: no-cache
+Host: api.toquery.com
+###
+
+# 04.test host_rewrite_route
+
+POST http://localhost/foo/post
+Accept: */*
+Cache-Control: no-cache
+Host: api.rewrite.org
+###

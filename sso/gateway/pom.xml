@@ -3,17 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>example-spring-cloud-gateway-parent</artifactId>
+        <artifactId>example-spring-cloud-gateway-sso-parent</artifactId>
         <groupId>io.github.toquery</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>example-spring-cloud-gateway</artifactId>
-    <name>Example :: Spring Cloud :: Gateway</name>
+    <artifactId>example-spring-cloud-gateway-sso</artifactId>
+    <name>Example :: Spring Cloud :: Gateway :: SSO :: Gateway</name>
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-client</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.isomorphism</groupId>
             <artifactId>token-bucket</artifactId>

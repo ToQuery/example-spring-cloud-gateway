@@ -2,6 +2,8 @@ package io.github.toquery.example.springcloud.gateway.resource;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,12 +61,19 @@ public class IndexRest {
         return map;
     }
 
-    @GetMapping("/test")
-    public Map<String, Object> getIndex() {
-        Map<String, Object> map = this.getHttpServlets(null);
-        log.info("test");
-        return map;
-    }
+    @GetMapping("/resource")
+    public Map<String, Object> resource(@AuthenticationPrincipal Jwt jwt) {
+        Map<String, Object> map = new HashMap<>();
+        log.info("***** JWT Headers: {}", jwt.getHeaders());
+        log.info("***** JWT Claims: {}", jwt.getClaims().toString());
+        log.info("***** JWT Token: {}", jwt.getTokenValue());
+        String info = String.format("Resource accessed by: %s (with subjectId: %s)",
+                jwt.getClaims().get("user_name"),
+                jwt.getSubject());
 
+        map.put("info", info);
+        map.put("jwt", jwt);
+        return this.getHttpServlets(map);
+    }
 
 }
