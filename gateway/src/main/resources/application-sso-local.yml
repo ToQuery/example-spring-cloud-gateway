@@ -1,0 +1,10 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          uaa:
+            authorization-uri: http://192.168.103.197:8090/uaa/oauth/authorize
+            token-uri: http://192.168.103.197:8090/uaa/oauth/token
+            user-info-uri: http://192.168.103.197:8090/uaa/userinfo
+            jwk-set-uri: http://192.168.103.197:8090/uaa/token_keys

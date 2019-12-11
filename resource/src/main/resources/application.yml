@@ -1,0 +1,26 @@
+#redis配置地址
+spring:
+  profiles:
+    active: dev
+
+
+# actuator配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  endpoint:
+    health:
+      show-details: always
+
+# 端口
+server:
+  port: 9000
+
+logging:
+  level:
+    root: info
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: debug
+    org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: debug

@@ -2,7 +2,31 @@
 spring:
   profiles:
     active: dev
-
+  cloud:
+    gateway:
+      routes:
+        - id: api-service-route
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
+        # 增加权重配置，有 20% 的几率会错误
+        - id: service1_ok
+          uri: http://localhost:8081
+          predicates:
+            - Path=/test
+            - Weight=service1, 40
+        - id: service1_ok
+          uri: http://localhost:8081
+          predicates:
+            - Path=/test
+            - Weight=service1, 40
+        - id: service1_error
+          uri: http://localhost:8082
+          predicates:
+            - Path=/test
+            - Weight=service1, 20
 
 # actuator配置
 management:
@@ -17,7 +41,7 @@ management:
 
 # 端口
 server:
-  port: 80
+  port: 8080
 logging:
   level:
     root: info
