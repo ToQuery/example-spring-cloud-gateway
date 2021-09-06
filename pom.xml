@@ -21,7 +21,8 @@
 		<module>gateway</module>
 		<module>resource</module>
         <module>sso</module>
-    </modules>
+		<module>oauth2-gateway</module>
+	</modules>
 
 	<properties>
 		<java.version>1.8</java.version>
