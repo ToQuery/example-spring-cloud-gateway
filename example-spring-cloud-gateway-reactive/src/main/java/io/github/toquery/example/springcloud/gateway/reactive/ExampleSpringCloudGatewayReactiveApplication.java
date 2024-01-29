@@ -1,11 +1,9 @@
-package io.github.toquery.example.springcloud.gateway;
+package io.github.toquery.example.springcloud.gateway.reactive;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
-import org.springframework.cloud.gateway.route.builder.GatewayFilterSpec;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
@@ -21,14 +19,14 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @SpringBootApplication
-public class ExampleSpringCloudGatewayApplication {
+public class ExampleSpringCloudGatewayReactiveApplication {
 
     private String uri = "http://httpbin.org:80";
 
     public static final String HELLO_FROM_FAKE_ACTUATOR_METRICS_GATEWAY_REQUESTS = "hello from fake /actuator/metrics/gateway.requests";
 
     public static void main(String[] args) {
-        SpringApplication.run(ExampleSpringCloudGatewayApplication.class, args);
+        SpringApplication.run(ExampleSpringCloudGatewayReactiveApplication.class, args);
     }
 
     @Bean
